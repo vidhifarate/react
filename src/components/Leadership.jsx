@@ -11,14 +11,14 @@ export default function Leadership() {
           <img src={sukumar} alt="Mr. Sukumar F. Chougule" />
           <h4>Mr. Sukumar F. Chougule</h4>
           <p><strong>Chairman</strong></p>
-          <p>Architect & Civil Engineer with over 40 years of experience. Chairman of SFC Infracon Pvt. Ltd. Sangli.</p>
+          <p> Chairman of SFC Infracon Pvt. Ltd. Sangli. Architect & Civil Engineer with over 40 years of experience.</p>
         </div>
 
         <div className="director-card">
           <img src={walchand} alt="Mr. Walchand S. Chougule" />
           <h4>Mr. Walchand S. Chougule</h4>
           <p><strong>Director</strong></p>
-          <p>Managing Director of SFC Megaa Mall. Holds a B.Arch and MSc. in Construction Project Management from the UK.</p>
+          <p>Director of SFC Infracon Pvt. Ltd. Sangli. Holds a B.Arch and MSc. in Construction Project Management from the UK.</p>
         </div>
       </div>
     </section>

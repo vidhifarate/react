@@ -7,6 +7,7 @@ import img5 from "../assets/D-03.jpg";
 import img6 from "../assets/DAY_01.jpg";
 import img7 from "../assets/NIGHT.jpg";
 
+
 export default function ProjectsCarousel() {
   const slides = [
     { img: img1, title: "SFC Mall", location: "SFC MEGAA MALL" },

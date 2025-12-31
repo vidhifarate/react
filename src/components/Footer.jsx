@@ -13,7 +13,6 @@ export default function Footer() {
             real estate and infrastructure development for over 40 years.
           </p>
           <div className="social-links">
-            <a href="#"><i className="fab fa-linkedin"></i></a>
             <a href="https://www.facebook.com/SFC.INFRACON/"><i className="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/sfc.infracon/"><i className="fab fa-instagram"></i></a>
           </div>
@@ -43,10 +42,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} SFC Infracon Pvt. Ltd. All Rights Reserved.</p>
-        <div className="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
+       
       </div>
     </footer>
   );

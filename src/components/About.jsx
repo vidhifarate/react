@@ -31,9 +31,9 @@ export default function About() {
           <div className="about-content">
             <p>
               “The Firm, initially started as a proprietorship under the name
-              <strong><em>Mr. Sukumar F. Chougule</em></strong>, later developed into a partnership firm as
-              <strong>M/s. S. F. Chougule</strong>, and today we are
-              <strong><u>SFC INFRACON PVT. LTD.</u></strong>.”
+              <strong><em> Mr. Sukumar F. Chougule</em></strong>, later developed into a partnership firm as
+              <strong> M/s. S. F. Chougule </strong>, and today we are
+              <strong><u> SFC INFRACON PVT. LTD.</u></strong>.”
             </p>
           </div>
         </div>
@@ -59,8 +59,8 @@ export default function About() {
           <div className="about-line"></div>
           <div className="about-content">
             <p>
-              “<strong>SFC INFRACON</strong> has successfully completed a <strong>wide range of  projects</strong> with an
-              extensive experience of more than <strong>40 years</strong>.”
+              “<strong>SFC INFRACON</strong> has successfully completed a <strong> wide range of  projects</strong> with an
+              extensive experience of more than <strong> 40 years</strong>.”
             </p>
           </div>
         </div>
