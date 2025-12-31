@@ -108,7 +108,6 @@ export default function ProjectsCarousel() {
       <section id="projects" className="projects-section">
         <h2 className="section-heading">Our Projects</h2>
         <hr />
-        <p className="center">A showcase of our residential, commercial, and infrastructure developments.</p>
 
         <div id="__main">
           <div className="image-carousel" ref={carouselRef}>

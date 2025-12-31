@@ -11,8 +11,8 @@
     --shadow: 0 10px 30px rgba(12, 38, 63, 0.08);
 
     /* Fonts (Modern Professional) */
-    --heading-font: 'Space Grotesk', sans-serif;
-    --body-font: 'Inter', sans-serif;
+    --heading-font: 'Crimson Text', serif;
+    --body-font: 'Satoshi', sans-serif;
 
     /* Layout */
     --max-width: 1200px;
@@ -66,48 +66,139 @@ hr {
     margin: 20px auto 40px auto;
 }
 
-/* Hero Section */
-.hero {
+.hero-fullscreen {
     position: relative;
-    text-align: center;
-    background: linear-gradient(135deg, var(--main) 0%, #3a5c77 100%);
-    color: var(--light);
-    padding: 100px 20px 60px;
-    border-radius: var(--radius);
-}
-
-.hero-image {
+    min-height: 80vh; /* Reduced from 100vh so it's not too big */
     width: 100%;
-    max-height: 480px;
-    object-fit: cover;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--main);
     border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-bottom: 30px;
 }
 
-.hero-content h1 {
-    font-family: var(--heading-font);
-    font-size: clamp(2.4rem, 5vw, 3.5rem);
-    margin: 0 0 15px;
-    font-weight: 700;
+.hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: var(--radius);
+}
+
+.hero-image-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Removed heavy blur to keep it clear */
+}
+
+.hero-light-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient: Darker on left for text, very light on right to see image */
+    background: linear-gradient(
+        to right, 
+        rgba(28, 49, 68, 0.75) 0%, 
+        rgba(28, 49, 68, 0.2) 100%
+    );
+    z-index: 2;
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 3;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.hero-text-block {
+    max-width: 650px;
     color: var(--light);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+    border-radius: var(--radius);
 }
 
-.hero-content .tagline { font-weight: 400; opacity: 0.95; letter-spacing: 0.01em; }
-
-
-.hero-content .tagline {
-    font-size: 1.5rem;
-    opacity: 0.9;
-    font-weight: 300;
+.hero-eyebrow {
+    color: var(--acc);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.hero-content .subtitle {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    margin-top: 10px;
+.hero-title {
+    font-family: var(--heading-font);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+    color: var(--light);
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    max-width: 500px;
+}
+
+.hero-button-group {
+    display: flex;
+    gap: 20px;
+}
+
+/* Primary Hero Button */
+.btn-main {
+    background: var(--acc);
+    color: var(--main);
+    padding: 14px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s;
+    border-radius: var(--radius);
+}
+
+/* Secondary Hero Link */
+.btn-link {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+    border-radius: var(--radius);
+}
+
+.btn-link:hover {
+    border-color: var(--acc);
+}
+
+/* --- MOBILE RESPONSIVENESS FOR HERO --- */
+@media (max-width: 768px) {
+    .hero-fullscreen {
+        min-height: 70vh; /* Shorter on mobile */
+        text-align: center;
+    }
+    .hero-light-overlay {
+        background: rgba(28, 49, 68, 0.65); /* Darker uniform overlay for mobile readability */
+    }
+    .hero-text-block {
+        margin: 0 auto;
+    }
+    .hero-button-group {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
 }
 
 /* Navbar */
@@ -892,4 +983,3 @@ footer {
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
