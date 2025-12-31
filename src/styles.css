@@ -685,15 +685,209 @@ a:focus, button:focus, .btn:focus { outline: 3px solid rgba(28,49,68,0.08); outl
     border: 0;
     border-radius: var(--radius);
 }
+/* Contact Form Layout */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-/* Footer */
-footer {
-    margin-top: 80px;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--main);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--body-font);
+}
+
+.btn-submit {
     background: var(--main);
     color: var(--light);
-    text-align: center;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover {
+    background: var(--acc);
+}
+/* ADD THIS TO YOUR CSS */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates the two columns */
+    gap: 40px;
+    margin-top: 30px;
+    background: var(--light);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    align-items: start;
+}
+
+/* Ensure the section is not hidden by the animation class */
+.section {
+    opacity: 1; 
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Stacks the address and form on mobile */
+    }
+}
+
+/* Professional Footer Styling */
+.footer-professional {
+    background: var(--main); /* Deep Blue */
+    color: var(--light);
+    padding: 80px 0 30px;
+    margin-top: 100px;
+}
+
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* Asymmetric grid for brand prominence */
+    gap: 60px;
+    padding: 0 20px;
+}
+
+.footer-col h4 {
+    color: var(--acc); /* Gold Accent */
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-logo {
+    height: 60px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1); /* Makes logo white if it's dark */
+}
+
+.footer-bio {
+    opacity: 0.8;
+    max-width: 320px;
+    margin-bottom: 25px;
     font-size: 0.95rem;
-    padding: 25px 0;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: var(--light);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    opacity: 1;
+    color: var(--acc);
+    padding-left: 5px;
+}
+
+.footer-contact li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.footer-contact i {
+    color: var(--acc);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--light);
+    font-size: 1.2rem;
+    background: rgba(255,255,255,0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: var(--acc);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.footer-legal a {
+    color: var(--light);
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* Stacks columns on mobile */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-bio {
+        margin: 0 auto 25px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
 
 /* Vision and Mission Section */
