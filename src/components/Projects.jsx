@@ -8,136 +8,79 @@ import img6 from "../assets/DAY_01.jpg";
 import img7 from "../assets/NIGHT.jpg";
 
 export default function ProjectsCarousel() {
-  const slides = [img1, img2, img3, img4, img5, img6, img7];
+  const slides = [
+    { img: img1, title: "SFC Mall", location: "SFC MEGAA MALL" },
+    { img: img2, title: "Commercial Complex", location: "" },
+    { img: img3, title: "Premium Residency", location: "" },
+    { img: img4, title: "Urban Infrastructure", location: "" },
+    { img: img5, title: "Corporate Hub", location: "" },
+    { img: img6, title: "Daylight Project", location: "" },
+    { img: img7, title: "Skyline Towers", location: "" },
+  ];
+
   const [current, setCurrent] = useState(0);
   const carouselRef = useRef(null);
-  const imagesRef = useRef([]);
-  const progressRefs = useRef([]);
-  const timerRef = useRef(null);
-  const TICK = 16; // ms (smooth updates)
-  const TIMEOUT = 2500; // autoplay per slide (1 second)
-  const WIDTH_PIXELS = 50; // progress target
+  const TIMEOUT = 3000; // 4 seconds per slide
 
-  const selectImage = (index = current) => {
-    const carousel = carouselRef.current;
-    const selected = imagesRef.current[index];
-    if (!carousel || !selected) return;
+  // Function to center the current image
+  const centerSlide = (index) => {
+    if (!carouselRef.current) return;
+    const items = carouselRef.current.children;
+    if (!items[index]) return;
 
+    const selected = items[index];
     const imageCenter = selected.offsetLeft + selected.offsetWidth / 2;
     const windowCenter = window.innerWidth / 2;
-    const diff = windowCenter - imageCenter;
-    carousel.style.transform = `translateX(${diff}px) translateZ(0px)`;
-  };
-
-  const resetProgress = (i) => {
-    const prog = progressRefs.current[i];
-    if (prog) prog.style.width = "8px";
-  };
-
-  const startPlayer = (idx = current) => {
-    clearInterval(timerRef.current);
-    let currentTime = 10;
-    const progressBar = progressRefs.current[idx];
-
-    timerRef.current = setInterval(() => {
-      const widthRatio = currentTime / TIMEOUT;
-      const currentWidth = WIDTH_PIXELS * widthRatio;
-      if (progressBar) progressBar.style.width = `${currentWidth}px`;
-      currentTime += TICK;
-      if (widthRatio >= 1.0) {
-        // advance
-        startNext();
-      }
-    }, TICK);
-  };
-
-  const startNext = (index = null) => {
-    clearInterval(timerRef.current);
-    const currDot = progressRefs.current.find((_, i) => i === current);
-    if (currDot) currDot.style.width = "8px";
-
-    let nextIndex;
-    if (index !== null) {
-      nextIndex = index;
-    } else {
-      nextIndex = (current + 1) % slides.length;
-    }
-
-    setCurrent(nextIndex);
+    carouselRef.current.style.transform = `translateX(${windowCenter - imageCenter}px)`;
   };
 
   useEffect(() => {
-    // highlight images (opacity/blur handled via inline styles) and center
-    imagesRef.current.forEach((img, i) => {
-      if (!img) return;
-      img.style.opacity = i === current ? 1 : 0.5;
-      img.style.filter = `blur(${i === current ? 0 : 4}px)`;
-    });
+    centerSlide(current);
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, TIMEOUT);
 
-    // reset previous progress bar and start player for new current
-    progressRefs.current.forEach((p, i) => {
-      if (p && i !== current) p.style.width = "8px";
-    });
-
-    // slight timeout to allow DOM layout
-    setTimeout(() => selectImage(current), 40);
-    startPlayer(current);
-
-    return () => clearInterval(timerRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
-
-  useEffect(() => {
-    // keyboard navigation + resize
-    const onKey = (e) => {
-      if (e.key === "ArrowLeft") startNext((current - 1 + slides.length) % slides.length);
-      if (e.key === "ArrowRight") startNext((current + 1) % slides.length);
-    };
-    const onResize = () => selectImage(current);
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("resize", onResize);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+    return () => clearInterval(timer);
+  }, [current, slides.length]);
 
   return (
-    <main className="section">
-      <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section-modern">
+      <div className="section-header">
         <h2 className="section-heading">Our Projects</h2>
-        <hr />
+        <hr className="short-hr" />
+      </div>
 
-        <div id="__main">
-          <div className="image-carousel" ref={carouselRef}>
-            {slides.map((src, i) => (
-              <div className="image-wrap" key={i} ref={(el) => (imagesRef.current[i] = el)}>
-                <img src={src} alt={`Project ${i + 1}`} loading="lazy" />
+      <div className="carousel-viewport">
+        <div className="carousel-track" ref={carouselRef}>
+          {slides.map((slide, i) => (
+            <div key={i} className={`slide-item ${current === i ? "active" : ""}`}>
+              <div className="project-card">
+                <img src={slide.img} alt={slide.title} loading="lazy" />
+                <div className="project-info">
+                  <h3>{slide.title}</h3>
+                  <p>{slide.location}</p>
+                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="autoplayer-group">
-            <div className="autoplayer-main">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  className={`autoplayer-dot ${current === i ? "selected" : ""}`}
-                  onClick={() => startNext(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                >
-                  <div
-                    ref={(el) => (progressRefs.current[i] = el)}
-                    className="autoplayer-progress"
-                    style={{ width: "8px" }}
-                  />
-                </button>
-              ))}
             </div>
-          </div>
+          ))}
         </div>
-      </section>
-    </main>
+      </div>
+
+      {/* Modern Navigation Controls */}
+      <div className="carousel-nav">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            className={`nav-dot ${current === i ? "active" : ""}`}
+            onClick={() => setCurrent(i)}
+          >
+            <div className="progress-fill" style={{ 
+              width: current === i ? '80%' : '0%',
+              transition: current === i ? `width ${TIMEOUT}ms linear` : 'none'
+            }} />
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -11,15 +11,13 @@ const Navbar = () => {
   }, [location]);
   return (
     <nav>
-      <div className="nav-container">
+      
+        <div className="nav-container">
+        {/* Logo wrapped in a link to the Home/Hero section */}
         <div className="logo">
-          <Link to="/#hero" aria-label="Go to homepage">
-            <img
-              src={logo}
-              alt="SFC INFRACON Logo"
-              height="40"
-            />
-          </Link>
+          <a href="#home" aria-label="Go to home section">
+            <img src={logo} alt="SFC Infracon Logo" />
+          </a>
         </div>
 
         <button className="menu-toggle" id="mobile-menu" aria-label="Toggle menu" onClick={() => setOpen((v) => !v)}>
