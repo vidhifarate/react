@@ -7,6 +7,11 @@ import img4 from "../assets/Cam_01.jpg";
 import img5 from "../assets/D-03.jpg";
 import img6 from "../assets/DAY_01.jpg";
 import img7 from "../assets/NIGHT.jpg";
+import img8 from "../assets/Cam_01_.jpg";
+import img9 from "../assets/Cam_02_.jpg";
+
+
+
 
 export default function ProjectsCarousel() {
   const slides = [
@@ -17,6 +22,8 @@ export default function ProjectsCarousel() {
     { img: img5, title: "Corporate Hub", location: "" },
     { img: img6, title: "Daylight Project", location: "" },
     { img: img7, title: "Skyline Towers", location: "" },
+    { img: img8, title: "Urban Development", location: "" },
+    { img: img9, title: "Modern Architecture", location: "" },
   ];
 
   const [current, setCurrent] = useState(0);
