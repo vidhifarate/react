@@ -1,131 +1,153 @@
 import { useState } from "react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    projectType: "Residential",
-    message: ""
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  //  Google Apps Script Web App URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWghykv46no1cxWzC7jKgWXLiQhGyB3JQg6X_N1xhma08Vv0T_kJtM0FLrIkkYI1wv/exec";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const form = e.target;
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then(() => {
+        setIsSuccess(true);
+        setIsSubmitting(false);
+        form.reset();
+
+        setTimeout(() => setIsSuccess(false), 5000);
+      })
+      .catch((error) => {
+        console.error("Error!", error.message);
+        setIsSubmitting(false);
+        alert("Submission failed. Please try again.");
+      });
   };
 
-  const formActionUrl = "https://formspree.io/f/xnjnaqga";
-
   return (
-    <section id="contact" className="section pop-up-scroll">
-      <h2 className="section-heading">Contact Us</h2>
+    <section id="contact" className="section">
+      <h2 className="section-heading">Work With Us</h2>
       <hr />
-      <p className="center" style={{ textAlign: 'center', marginBottom: '30px' }}>
-        Connect with our expert team to bring your infrastructure or real estate vision to life.
-      </p>
 
       <div className="contact-container">
+
+        {/* LEFT SIDE – CONTACT DETAILS */}
         <div className="contact-details">
           <h3>SFC INFRACON PVT. LTD.</h3>
           <p>
             <b>Head Office:</b><br />
             C.S. No. 10103/2, ORIANA, GF 02,<br />
-            Near Birnale Medical College, Neminath Nagar,<br />
             Sangli, Maharashtra 416416
           </p>
-          
+
           <ul className="contact-list">
             <li><i className="fas fa-phone"></i> <b>Phone:</b> +91 2333 550068</li>
             <li><i className="fas fa-envelope"></i> <b>Email:</b> sfc.infracon@gmail.com</li>
           </ul>
 
-          <div className="map-embed" style={{ marginTop: '20px' }}>
+          <div className="map-embed" style={{ marginTop: "20px" }}>
             <iframe
               title="SFC Infracon Location"
-              /* Note: Ensure this is a valid HTTPS embed URL from Google Maps */
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.5912444645396!2d74.605332!3d16.846666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDUwJzQ4LjAiTiA3NMKwMzYnMTkuMiJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-              width="100%" 
-              height="240" 
-              style={{ border: 0, borderRadius: "12px" }} 
-              allowFullScreen 
+              src="https://www.google.com/maps/embed?pb=..."
+              width="100%"
+              height="200"
+              style={{ border: 0, borderRadius: "12px" }}
+              allowFullScreen
               loading="lazy"
-            />
+            ></iframe>
           </div>
         </div>
 
-        {/* Formspree works best when 'name' attributes match your dashboard keys */}
-        <form action={formActionUrl} method="POST" className="contact-form">
-          <input type="hidden" name="_subject" value="New Project Inquiry - SFC Infracon" />
-          
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input 
-              type="text" 
-              id="name"
-              name="name" 
-              required 
-              value={formData.name} 
-              onChange={handleChange} 
-              placeholder="Enter your full name" 
-            />
-          </div>
+        {/* RIGHT SIDE – CUSTOM FORM */}
+        <div className="form-wrapper" style={{ position: "relative" }}>
+          <form
+            className={`contact-form ${isSuccess ? "form-fade" : ""}`}
+            onSubmit={handleSubmit}
+          >
+            <div className="form-group">
+              <label>Full Name</label>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Your full name"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input 
-              type="email" 
-              id="email"
-              name="email" 
-              required 
-              value={formData.email} 
-              onChange={handleChange} 
-              placeholder="email@example.com" 
-            />
-          </div>
+            <div className="form-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="email@example.com"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
-            <input 
-              type="tel" 
-              id="phone"
-              name="phone" 
-              value={formData.phone} 
-              onChange={handleChange} 
-              placeholder="+91 XXXXX XXXXX" 
-            />
-          </div>
+            <div className="form-group">
+              <label>Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                required
+                placeholder="+91 XXXXX XXXXX"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="projectType">Project Interest</label>
-            <select 
-              id="projectType"
-              name="projectType" 
-              value={formData.projectType} 
-              onChange={handleChange}
+            <div className="form-group">
+              <label>Project Type</label>
+              <select name="projectType">
+                <option>Residential</option>
+                <option>Commercial</option>
+                <option>Infrastructure</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Message</label>
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="How can we assist you?"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="btn-submit"
+              disabled={isSubmitting}
             >
-              <option value="Residential">Residential Development</option>
-              <option value="Commercial">Commercial Complex</option>
-              <option value="Infrastructure">Public Infrastructure</option>
-              <option value="Consultation">Technical Consultation</option>
-            </select>
-          </div>
+              {isSubmitting ? "Sending..." : "Submit Inquiry"}
+            </button>
+          </form>
 
-          <div className="form-group">
-            <label htmlFor="message">Project Brief</label>
-            <textarea 
-              id="message"
-              name="message" 
-              rows="4" 
-              required 
-              value={formData.message} 
-              onChange={handleChange} 
-              placeholder="Describe your requirements..."
-            ></textarea>
-          </div>
+          {/* SUCCESS POPUP */}
+          {isSuccess && (
+            <div className="success-overlay">
+              <div className="success-card">
+                <div className="success-icon">✓</div>
+                <h3>Inquiry Received!</h3>
+                <p>
+                  Thank you for contacting SFC Infracon.
+                  We will get back to you shortly.
+                </p>
+                <button
+                  onClick={() => setIsSuccess(false)}
+                  className="btn-close-msg"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
 
-          <button type="submit" className="btn-submit">
-            Send Inquiry 
-          </button>
-        </form>
       </div>
     </section>
   );
