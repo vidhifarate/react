@@ -533,26 +533,69 @@ h3, h4 {
     display: block;
 }
 
-/* Glassmorphism Info Box */
 .project-info {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    background: linear-gradient(transparent, rgba(186, 218, 240, 0.9));
-    color: rgb(0, 0, 0);
+    bottom: 24px;
+    left: 24px;
+    
+    /* Compact Sizing */
+    width: auto;
+    min-width: 200px;
+    max-width: 280px; /* Prevents it from covering too much width */
+    padding: 16px 20px;
+    
+    /* Refined Glassmorphism */
+    background: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border-radius: 8px; /* Slightly sharper for a professional look */
+  
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    
+    /* Animation */
     transform: translateY(20px);
     opacity: 0;
-    transition: 0.5s ease;
-    
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 5;
+    pointer-events: none; /* Allows clicks to pass through to the image */
 }
 
+/* Reveal only when the slide is the centered/active one */
 .slide-item.active .project-info {
     transform: translateY(0);
     opacity: 1;
 }
 
+.project-info h3 {
+    margin: 0;
+    font-family: var(--heading-font);
+    font-size: 1.25rem; /* Scaled down */
+    line-height: 1.2;
+    color: var(--main);
+    font-weight: 700;
+}
+
+.project-info p {
+    margin-top: 4px;
+    font-family: var(--body-font);
+    font-size: 0.75rem; /* Smaller subtext */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--acc);
+    font-weight: 600;
+}
+
+/* Mobile Adjustment: Make it even smaller so it doesn't block the small screen */
+@media (max-width: 768px) {
+    .project-info {
+        bottom: 15px;
+        left: 15px;
+        min-width: 150px;
+        padding: 12px;
+    }
+    .project-info h3 { font-size: 1.1rem; }
+}
 /* Nav Dots with Progress */
 .carousel-nav {
     display: flex;
@@ -695,42 +738,6 @@ body:has(.lightbox-overlay) {
     .masonry-grid { column-count: 1; }
 }
 
-/* Pinterest-style Grid for Projects page */
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  margin-top: 24px;
-}
-
-.column {
-  flex: 25%;
-  max-width: 25%;
-  padding: 5px 8px;
-  box-sizing: border-box;
-}
-
-.column img {
-  margin-top: 10px;
-  width: 100%;
-  border-radius: 12px;
-  display: block;
-  box-shadow: 0 10px 30px rgba(12,38,63,0.06);
-  transition: transform 260ms ease, box-shadow 260ms ease;
-}
-
-.column img:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 48px rgba(12,38,63,0.09);
-}
-
-@media (max-width: 1200px) {
-  .column { flex: 50%; max-width: 50%; }
-}
-
-@media (max-width: 600px) {
-  .column { flex: 100%; max-width: 100%; }
-}
 
 /* Contact */
 .contact-list { padding: 0; margin: 15px 0 20px; list-style: none;}

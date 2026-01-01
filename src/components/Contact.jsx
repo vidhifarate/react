@@ -13,19 +13,17 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Note: To make this functional, replace 'your-unique-id' with your actual Formspree ID
   const formActionUrl = "https://formspree.io/f/xnjnaqga";
 
   return (
     <section id="contact" className="section pop-up-scroll">
-      <h2 className="section-heading">contact</h2>
+      <h2 className="section-heading">Contact Us</h2>
       <hr />
       <p className="center" style={{ textAlign: 'center', marginBottom: '30px' }}>
         Connect with our expert team to bring your infrastructure or real estate vision to life.
       </p>
 
       <div className="contact-container">
-        {/* Left Side: Professional Contact Details */}
         <div className="contact-details">
           <h3>SFC INFRACON PVT. LTD.</h3>
           <p>
@@ -41,23 +39,21 @@ export default function Contact() {
           </ul>
 
           <div className="map-embed" style={{ marginTop: '20px' }}>
-         
-<iframe
-  title="SFC Infracon Location"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15274.223185762048!2d74.56961518438989!3d16.848378712779983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc118795cc5d68d%3A0xaecfe74f14c70113!2sSFC%20Infracon%20Private%20Limited!5e0!3m2!1sen!2sin!4v1767178361456!5m2!1sen!2sin"
-  width="100%"
-  height="240"
-  style={{ border: 0, borderRadius: "12px" }}
-  allowFullScreen
-  loading="lazy"
-/>
-
+            <iframe
+              title="SFC Infracon Location"
+              /* Note: Ensure this is a valid HTTPS embed URL from Google Maps */
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.5912444645396!2d74.605332!3d16.846666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDUwJzQ4LjAiTiA3NMKwMzYnMTkuMiJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%" 
+              height="240" 
+              style={{ border: 0, borderRadius: "12px" }} 
+              allowFullScreen 
+              loading="lazy"
+            />
           </div>
         </div>
 
-        {/* Right Side: Lead Generation Form */}
+        {/* Formspree works best when 'name' attributes match your dashboard keys */}
         <form action={formActionUrl} method="POST" className="contact-form">
-          {/* Hidden field for Email Subject in the Owner's inbox */}
           <input type="hidden" name="_subject" value="New Project Inquiry - SFC Infracon" />
           
           <div className="form-group">

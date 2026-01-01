@@ -3,27 +3,28 @@ import { useEffect, useRef, useState } from "react";
 import img1 from "../assets/SFC MALL.jpg";
 import img2 from "../assets/mall2.jpg";
 import img3 from "../assets/A-03-8X12.jpg";
-import img4 from "../assets/Cam_01.jpg";
-import img5 from "../assets/D-03.jpg";
-import img6 from "../assets/DAY_01.jpg";
-import img7 from "../assets/NIGHT.jpg";
-import img8 from "../assets/Cam_01_.jpg";
-import img9 from "../assets/Cam_02_.jpg";
-
+import img4 from "../assets/D-03.jpg";
+import img5 from "../assets/DAY_01.jpg";
+import img6 from "../assets/NIGHT.jpg";
+import img7 from "../assets/Cam_01_.jpg";
+import img8 from "../assets/Cam_02_.jpg";
+import img9 from "../assets/B-03-8X12 (2).jpg";
+import img10 from "../assets/A-03.jpg";
 
 
 
 export default function ProjectsCarousel() {
   const slides = [
-    { img: img1, title: "SFC Mall", location: "SFC Mega Mall" },
-    { img: img2, title: "Commercial Complex", location: "" },
-    { img: img3, title: "Premium Residency", location: "" },
-    { img: img4, title: "Urban Infrastructure", location: "" },
-    { img: img5, title: "Corporate Hub", location: "" },
-    { img: img6, title: "Daylight Project", location: "" },
-    { img: img7, title: "Skyline Towers", location: "" },
-    { img: img8, title: "Urban Development", location: "" },
-    { img: img9, title: "Modern Architecture", location: "" },
+    { img: img1, title: "SFC Megaa Mall", location: "Commercial" },
+    { img: img2, title: "SFC Megaa Mall", location: "Commercial" },
+    { img: img3, title: "Oriana", location: "Residential" },
+    { img: img4, title: "Aarna", location: "Residential" },
+    { img: img5, title: "Brij Arcade", location: "Residential" },
+    { img: img6, title: "Brij Arcade", location: "Residential" },
+    { img: img7, title: "Centurion Avenue", location: "Commercial" },
+    { img: img8, title: "Centurion Avenue", location: "Commercial" },
+    { img: img9, title: "Oriana", location: "Residential" },
+    { img: img10, title: "Aarna", location: "Residential" },
   ];
 
   const [current, setCurrent] = useState(0);
