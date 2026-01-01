@@ -545,7 +545,7 @@ h3, h4 {
     padding: 16px 20px;
     
     /* Refined Glassmorphism */
-    background: rgba(255, 255, 255, 0.4); 
+    background: rgba(255, 255, 255, 0.8); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     
@@ -570,7 +570,7 @@ h3, h4 {
 .project-info h3 {
     margin: 0;
     font-family: var(--heading-font);
-    font-size: 1.25rem; /* Scaled down */
+    font-size: 1.25rem; 
     line-height: 1.2;
     color: var(--main);
     font-weight: 700;
@@ -579,7 +579,7 @@ h3, h4 {
 .project-info p {
     margin-top: 4px;
     font-family: var(--body-font);
-    font-size: 0.75rem; /* Smaller subtext */
+    font-size: 0.75rem; 
     text-transform: uppercase;
     letter-spacing: 1.2px;
     color: var(--acc);
